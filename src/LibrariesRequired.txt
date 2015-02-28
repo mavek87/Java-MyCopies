@@ -1,0 +1,4 @@
+commons-io-2.4.jar
+logback-classic-1.1.2.jar
+logback-core-1.1.2.jar
+slf4j-api-1.7.10.jar
