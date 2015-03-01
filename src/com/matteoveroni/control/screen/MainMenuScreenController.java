@@ -52,14 +52,16 @@ public class MainMenuScreenController implements Initializable, ScreenController
         this.stage = stage;
     }
 
-    //@FXML
+    @FXML
     private void radioButtonFile(ActionEvent event) {
         currentRadioButtonState = RadioButtonStates.file;
+        consolleTextArea.appendText(" - radioButtonFile: " + currentRadioButtonState + "\n");
     }
 
-    //@FXML
+    @FXML
     private void radioButtonDirectory(ActionEvent event) {
         currentRadioButtonState = RadioButtonStates.directory;
+        consolleTextArea.appendText(" - radioButtonDirectory: " + currentRadioButtonState + "\n");
     }
 
     @FXML
@@ -67,14 +69,14 @@ public class MainMenuScreenController implements Initializable, ScreenController
         File sourcePathChoosen = null;
         switch (currentRadioButtonState) {
             case file:
-                DirectoryChooser directoryChooser = new DirectoryChooser();
-                directoryChooser.setTitle("Open Resource File");
-                sourcePathChoosen = directoryChooser.showDialog(stage);
-                break;
-            case directory:
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Resource File");
                 sourcePathChoosen = fileChooser.showOpenDialog(stage);
+                break;
+            case directory:
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                directoryChooser.setTitle("Open Resource File");
+                sourcePathChoosen = directoryChooser.showDialog(stage);
                 break;
         }
         if(sourcePathChoosen!=null) sourcePathTextField.setText(sourcePathChoosen.getAbsolutePath());
@@ -92,15 +94,15 @@ public class MainMenuScreenController implements Initializable, ScreenController
         File targetPathChoosen = null;
         switch (currentRadioButtonState) {
             case file:
-                DirectoryChooser directoryChooser = new DirectoryChooser();
-                directoryChooser.setTitle("Open Resource File");
-                targetPathChoosen = directoryChooser.showDialog(stage);
-                break;
-            case directory:
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Resource File");
                 targetPathChoosen = fileChooser.showOpenDialog(stage);
-                break;
+            break;
+            case directory:
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                directoryChooser.setTitle("Open Resource File");
+                targetPathChoosen = directoryChooser.showDialog(stage);
+            break;
         }
         if(targetPathChoosen!=null) targetPathTextField.setText(targetPathChoosen.getAbsolutePath());
         
