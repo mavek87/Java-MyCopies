@@ -22,14 +22,14 @@
                               <TextField id="targetPathTextField" fx:id="targetPathTextField" layoutX="113.0" layoutY="54.0" />
                               <Button fx:id="chooseTargetPathButton" layoutX="298.0" layoutY="54.0" mnemonicParsing="false" onAction="#chooseTargetPath" prefHeight="25.0" prefWidth="110.0" text="Choose path" />
                               <Button fx:id="startCopyButton" layoutX="233.0" layoutY="176.0" mnemonicParsing="false" onAction="#startCopy" prefHeight="58.0" prefWidth="145.0" text="Start Copy" />
-                              <Group>
+                              <Group layoutX="-17.0" layoutY="-1.0">
                                  <children>
-                                    <RadioButton layoutX="452.0" layoutY="25.0" mnemonicParsing="false" onAction="#radioButtonFile" selected="true" text="File source">
+                                    <RadioButton layoutX="452.0" layoutY="25.0" mnemonicParsing="false" onAction="#radioButtonFile" selected="true" text="Choose a file">
                                        <toggleGroup>
                                           <ToggleGroup fx:id="radioButtonGroup" />
                                        </toggleGroup>
                                     </RadioButton>
-                                    <RadioButton layoutX="452.0" layoutY="50.0" mnemonicParsing="false" onAction="#radioButtonDirectory" text="Directory source" toggleGroup="$radioButtonGroup" />
+                                    <RadioButton layoutX="452.0" layoutY="50.0" mnemonicParsing="false" onAction="#radioButtonDirectory" text="Choose a directory" toggleGroup="$radioButtonGroup" />
                                  </children>
                               </Group>
                            </children>

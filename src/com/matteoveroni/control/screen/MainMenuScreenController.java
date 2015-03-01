@@ -13,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -35,13 +37,12 @@ public class MainMenuScreenController implements Initializable, ScreenController
 
     private Model model;
     private Stage stage;
-
-    private enum RadioButtonStates {
-        file, directory
-    };
     
-    private RadioButtonStates currentRadioButtonState = RadioButtonStates.file;
-
+    private static final Logger LOG = LoggerFactory.getLogger(MainMenuScreenController.class);
+    
+    private enum RadioButtonStates { file, directory };
+    private RadioButtonStates isRadioButtonFileOrDirectory = RadioButtonStates.file;
+    
     @Override
     public void setModel(Model model) {
         this.model = model;
@@ -54,64 +55,61 @@ public class MainMenuScreenController implements Initializable, ScreenController
 
     @FXML
     private void radioButtonFile(ActionEvent event) {
-        currentRadioButtonState = RadioButtonStates.file;
-        consolleTextArea.appendText(" - radioButtonFile: " + currentRadioButtonState + "\n");
+        isRadioButtonFileOrDirectory = RadioButtonStates.file;
+        consolleTextArea.appendText(" - radioButtonFile: " + isRadioButtonFileOrDirectory + "\n");
+        LOG.info("radioButtonFile: " + isRadioButtonFileOrDirectory);
     }
 
     @FXML
     private void radioButtonDirectory(ActionEvent event) {
-        currentRadioButtonState = RadioButtonStates.directory;
-        consolleTextArea.appendText(" - radioButtonDirectory: " + currentRadioButtonState + "\n");
+        isRadioButtonFileOrDirectory = RadioButtonStates.directory;
+        consolleTextArea.appendText(" - radioButtonDirectory: " + isRadioButtonFileOrDirectory + "\n");
+        LOG.info("radioButtonDirectory: " + isRadioButtonFileOrDirectory);
     }
 
     @FXML
     private void chooseSourcePath(ActionEvent event) {
-        File sourcePathChoosen = null;
-        switch (currentRadioButtonState) {
-            case file:
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Open Resource File");
-                sourcePathChoosen = fileChooser.showOpenDialog(stage);
-                break;
-            case directory:
-                DirectoryChooser directoryChooser = new DirectoryChooser();
-                directoryChooser.setTitle("Open Resource File");
-                sourcePathChoosen = directoryChooser.showDialog(stage);
-                break;
+        File sourcePathChoosen = chooseFileOrDirectory();
+        if (sourcePathChoosen != null && !sourcePathChoosen.toString().trim().equals("")) {
+            sourcePathTextField.setText(sourcePathChoosen.getAbsolutePath());
+            consolleTextArea.appendText(" - sourcePathChoosen: " + sourcePathChoosen + "\n");
+            LOG.info("sourcePathChoosen: " + sourcePathChoosen);
         }
-        if(sourcePathChoosen!=null) sourcePathTextField.setText(sourcePathChoosen.getAbsolutePath());
-            
-        /*String sourcePath = sourcePathTextField.getText().trim();
-         if (sourcePath != null && !sourcePath.equals("")) {
-         consolleTextArea.appendText(" - chooseSourcePath: " + sourcePath + "\n");
-         } else {
-         consolleTextArea.appendText(" - sourcePath null or empty!!!\n");
-         }*/
     }
 
     @FXML
     private void chooseTargetPath(ActionEvent event) {
-        File targetPathChoosen = null;
-        switch (currentRadioButtonState) {
-            case file:
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Open Resource File");
-                targetPathChoosen = fileChooser.showOpenDialog(stage);
-            break;
-            case directory:
-                DirectoryChooser directoryChooser = new DirectoryChooser();
-                directoryChooser.setTitle("Open Resource File");
-                targetPathChoosen = directoryChooser.showDialog(stage);
-            break;
+        File targetPathChoosen = chooseFileOrDirectory();
+        if (targetPathChoosen != null && !targetPathChoosen.toString().trim().equals("")) {
+            targetPathTextField.setText(targetPathChoosen.getAbsolutePath());
+            consolleTextArea.appendText(" - targetPathChoosen: " + targetPathChoosen + "\n");
+            LOG.info("targetPathChoosen: " + targetPathChoosen);
         }
-        if(targetPathChoosen!=null) targetPathTextField.setText(targetPathChoosen.getAbsolutePath());
-        
-        /*String targetPath = targetPathTextField.getText().trim();
-        if (targetPath != null && !targetPath.equals("")) {
-            consolleTextArea.appendText(" - chooseTargetPath: " + targetPath + "\n");
-        } else {
-            consolleTextArea.appendText(" - targetPath null or empty!!!\n");
-        }*/
+    }
+    
+    private File chooseFileOrDirectory(){
+        File pathChoosen = null;
+        switch (isRadioButtonFileOrDirectory) {
+            case file:
+                pathChoosen = chooseFile();
+                break;
+            case directory:
+                pathChoosen = chooseDirectory();
+                break;
+        }
+        return pathChoosen;
+    }
+    
+    private File chooseFile(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        return fileChooser.showOpenDialog(stage);
+    }
+    
+    private File chooseDirectory(){
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Open Resource File");
+        return directoryChooser.showDialog(stage);
     }
 
     @FXML
@@ -122,6 +120,7 @@ public class MainMenuScreenController implements Initializable, ScreenController
         model.copy(new File(sourcePathChoosen), new File(targetPathChoosen));
 
         consolleTextArea.appendText(" - startCopy: " + sourcePathChoosen + " -> " + targetPathChoosen + "\n");
+        LOG.info("startCopy: " + sourcePathChoosen + " -> " + targetPathChoosen);
     }
 
     @Override
