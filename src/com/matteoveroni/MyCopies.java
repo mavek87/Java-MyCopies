@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +38,8 @@ public class MyCopies extends Application {
         stage.setScene(scene);
         stage.show();
         LOG.debug("View created and shown");
+        
+        mainMenuScreenController.setStage(stage);
     }
 
     /**

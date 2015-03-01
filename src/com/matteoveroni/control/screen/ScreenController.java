@@ -1,6 +1,7 @@
 package com.matteoveroni.control.screen;
 
 import com.matteoveroni.model.Model;
+import javafx.stage.Stage;
 
 /**
  *
@@ -9,4 +10,6 @@ import com.matteoveroni.model.Model;
 public interface ScreenController {
 
     public void setModel(Model model);
+    
+    public void setStage(Stage stage);
 }
