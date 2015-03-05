@@ -2,6 +2,7 @@ package com.matteoveroni.control.screen;
 
 import com.matteoveroni.model.Model;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,9 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author Matteo Veroni
  */
+
 public class MainMenuScreenController implements Initializable, ScreenController {
 
     @FXML
@@ -37,12 +38,15 @@ public class MainMenuScreenController implements Initializable, ScreenController
 
     private Model model;
     private Stage stage;
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(MainMenuScreenController.class);
-    
-    private enum RadioButtonStates { file, directory };
+
+    private enum RadioButtonStates {
+
+        file, directory
+    };
     private RadioButtonStates isRadioButtonFileOrDirectory = RadioButtonStates.file;
-    
+
     @Override
     public void setModel(Model model) {
         this.model = model;
@@ -86,8 +90,8 @@ public class MainMenuScreenController implements Initializable, ScreenController
             LOG.info("targetPathChoosen: " + targetPathChoosen);
         }
     }
-    
-    private File chooseFileOrDirectory(){
+
+    private File chooseFileOrDirectory() {
         File pathChoosen = null;
         switch (isRadioButtonFileOrDirectory) {
             case file:
@@ -99,14 +103,14 @@ public class MainMenuScreenController implements Initializable, ScreenController
         }
         return pathChoosen;
     }
-    
-    private File chooseFile(){
+
+    private File chooseFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         return fileChooser.showOpenDialog(stage);
     }
-    
-    private File chooseDirectory(){
+
+    private File chooseDirectory() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Open Resource File");
         return directoryChooser.showDialog(stage);
@@ -117,10 +121,15 @@ public class MainMenuScreenController implements Initializable, ScreenController
         String sourcePathChoosen = sourcePathTextField.getText().trim();
         String targetPathChoosen = targetPathTextField.getText().trim();
 
-        model.copy(new File(sourcePathChoosen), new File(targetPathChoosen));
+        try {
+            model.simpleCopy(new File(sourcePathChoosen), new File(targetPathChoosen));
+            consolleTextArea.appendText(" - startCopy: " + sourcePathChoosen + " -> " + targetPathChoosen + "\n");
+            LOG.info("startCopy: " + sourcePathChoosen + " -> " + targetPathChoosen);
+        } catch (IOException ex) {
+            consolleTextArea.appendText("copy error: " + ex.getMessage() + "\n");
+            LOG.error(ex.getMessage());
+        }
 
-        consolleTextArea.appendText(" - startCopy: " + sourcePathChoosen + " -> " + targetPathChoosen + "\n");
-        LOG.info("startCopy: " + sourcePathChoosen + " -> " + targetPathChoosen);
     }
 
     @Override

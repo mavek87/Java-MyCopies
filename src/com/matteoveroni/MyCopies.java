@@ -11,9 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author Matteo Veroni
  */
+
 public class MyCopies extends Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(MyCopies.class);

@@ -7,14 +7,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
  * @author Matteo Veroni
  */
+
 public class PathCopier implements Copier {
 
     private File source;
     private File target;
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(PathCopier.class);
 
     public PathCopier(File source, File target) {
@@ -39,31 +39,19 @@ public class PathCopier implements Copier {
     }
 
     @Override
-    public void copy() {
+    public void copy() throws IOException {
         if (validSource() && validTarget()) {
             if (source.isFile() && target.isFile()) {
-                try {
-                    FileUtils.copyFile(source, target);
-                } catch (IOException ex) {
-                    printError("Errore I/O - " + ex);
-                }
+                FileUtils.copyFile(source, target);
             } else if (source.isFile() && target.isDirectory()) {
-                try {
-                    FileUtils.copyFileToDirectory(source, target);
-                } catch (IOException ex) {
-                    printError("Errore I/O - " + ex);
-                }
+                FileUtils.copyFileToDirectory(source, target);
             } else if (source.isDirectory() && target.isDirectory()) {
-                try {
-                    FileUtils.copyDirectory(source, target);
-                } catch (IOException ex) {
-                    printError("Errore I/O - " + ex);
-                }
+                FileUtils.copyDirectory(source, target);
             } else if (source.isDirectory() && target.isFile()) {
-                printError("Can\'t write a directory inside a file!");
+                throwPersonalizedIOError("Can\'t write a directory inside a file!");
             }
         } else {
-            printError("Source does\'t exists or not readable or Target not writable");
+            throwPersonalizedIOError("Source doesn\'t exists or not readable or Target not writable");
         }
     }
 
@@ -75,7 +63,8 @@ public class PathCopier implements Copier {
         return target.canWrite();
     }
 
-    private void printError(String error) {
+    private void throwPersonalizedIOError(String error) throws IOException {
         LOG.error(error);
+        throw new IOException(error);
     }
 }
