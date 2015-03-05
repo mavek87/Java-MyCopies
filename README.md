@@ -1,2 +1,4 @@
 # Java-MyCopies
-Software for backup data written in Java
+Software for data backups written in Java 
+
+Alpha Version
