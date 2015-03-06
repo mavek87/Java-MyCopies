@@ -17,11 +17,12 @@ import org.slf4j.LoggerFactory;
 public class MyCopies extends Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(MyCopies.class);
-    
+    private static final String APPLICATION_NAME = "MyCopies";
+    private static final String APPLICATION_VERSION = "0.0.1";
+
     @Override
     public void start(Stage stage) throws Exception {
-
-        Model model = new Model();
+        final Model model = new Model();
         LOG.debug("Model created");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view/MainMenuScreen.fxml"));
@@ -32,11 +33,13 @@ public class MyCopies extends Application {
         mainMenuScreenController.setModel(model);
         LOG.debug("Model for Main Menu Screen Controller setted");
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
+        Scene mainScene = new Scene(root);
+        
+        stage.setTitle(APPLICATION_NAME + "v." + APPLICATION_VERSION);
+        stage.setScene(mainScene);
         stage.show();
         LOG.debug("View created and shown");
-        
+
         mainMenuScreenController.setStage(stage);
     }
 

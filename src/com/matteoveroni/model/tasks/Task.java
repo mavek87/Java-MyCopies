@@ -40,7 +40,7 @@ public class Task implements Runnable, Subject {
 
     @Override
     public void run() {
-        synchronized(this){
+        synchronized (this) {
             try {
                 action.execute();
             } catch (Exception ex) {
@@ -67,6 +67,7 @@ public class Task implements Runnable, Subject {
     public void notifyObservers() {
         for (Observer exceptionObserver : exceptionObservers) {
             exceptionObserver.update(this);
+
         }
     }
 
@@ -75,7 +76,6 @@ public class Task implements Runnable, Subject {
     }
 
     // Public Task getters and setters:
-    
     public UUID getID() {
         return ID;
     }

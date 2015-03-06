@@ -40,6 +40,7 @@ public class PathCopier implements Copier {
 
     @Override
     public void copy() throws IOException {
+        //try{
         if (validSource() && validTarget()) {
             if (source.isFile() && target.isFile()) {
                 FileUtils.copyFile(source, target);

@@ -1,5 +1,7 @@
 package com.matteoveroni.model.tasks;
 
+import com.matteoveroni.MyCopies;
+import com.matteoveroni.model.commoninterfaces.Disposable;
 import com.matteoveroni.model.designpatterns.Observer;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,16 +9,19 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Matteo Veroni
  */
 
-public class TaskManager implements Observer {
+public class TaskManager implements Observer, Disposable {
 
     private final ScheduledExecutorService scheduler;
     private final Map<Task, ScheduledFuture> tasks;
     private static final int NUMBER_OF_PARALLEL_THREADS = 4;
+    private static final Logger LOG = LoggerFactory.getLogger(TaskManager.class);
     
     public TaskManager(){
         scheduler = Executors.newScheduledThreadPool(NUMBER_OF_PARALLEL_THREADS);
@@ -40,19 +45,21 @@ public class TaskManager implements Observer {
     }
 
     @Override
-    public void update(Object subject) {
+    public void update(Object subject){
         Task task;
         task = (Task) subject;
         
         ScheduledFuture scheduledFutureTaskToCancel = tasks.get(task);
         scheduledFutureTaskToCancel.cancel(true);
         
-        System.out.println("caspius! durante l\'esecuzione del compito ID = " + task.getID()
-                        + "\nName = " + task.getName() 
-                        + "\nè avvenuta la seguente eccezione: " + task.getExceptionOccurred().toString());
+        LOG.error("Task ID: " + task.getID()
+                 +" Name: " + task.getName() 
+                 +" " + task.getExceptionOccurred().toString());
+        
         tasks.put(task, null);
     }
 
+    @Override
     public void dispose() {
         scheduler.shutdown();
         tasks.clear();

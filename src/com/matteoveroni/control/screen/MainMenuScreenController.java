@@ -2,10 +2,11 @@ package com.matteoveroni.control.screen;
 
 import com.matteoveroni.model.Model;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,6 +57,15 @@ public class MainMenuScreenController implements Initializable, ScreenController
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                model.dispose();
+                LOG.debug("Model disposed");
+                LOG.info("Exit");
+                //Platform.exit();
+            }
+        });
     }
 
     @FXML
@@ -122,10 +133,11 @@ public class MainMenuScreenController implements Initializable, ScreenController
         String targetPathChoosen = targetPathTextField.getText().trim();
 
         try {
-            model.simpleCopy(new File(sourcePathChoosen), new File(targetPathChoosen));
+            model.simpleCopy("name", new File(sourcePathChoosen), new File(targetPathChoosen));
             consolleTextArea.appendText(" - startCopy: " + sourcePathChoosen + " -> " + targetPathChoosen + "\n");
             LOG.info("startCopy: " + sourcePathChoosen + " -> " + targetPathChoosen);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
+            System.out.println("Qui non entra per il momento");
             consolleTextArea.appendText("copy error: " + ex.getMessage() + "\n");
             LOG.error(ex.getMessage());
         }
