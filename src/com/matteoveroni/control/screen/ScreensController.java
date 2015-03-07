@@ -64,7 +64,7 @@ public class ScreensController extends StackPane implements ScreenController {
 
             addScreen(name, screenLoaded);
             
-            LOG.info("Screen " + name + "loaded succesfully!");
+            LOG.info("Screen " + name + " loaded succesfully!");
             return true;
 
         } catch (Exception e) {
@@ -115,7 +115,7 @@ public class ScreensController extends StackPane implements ScreenController {
                 fadeIn.play();
             }
             
-            LOG.info("Screen " + name + "loaded succesfully!");
+            LOG.info("Screen " + name + " switched succesfully!");
             return true;
         } else {
             LOG.warn("Screen hasn\'t been loaded!");
