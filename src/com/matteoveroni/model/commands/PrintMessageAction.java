@@ -1,7 +1,6 @@
 package com.matteoveroni.model.commands;
 
 /**
- *
  * @author Matteo Veroni
  */
 public class PrintMessageAction implements Action {

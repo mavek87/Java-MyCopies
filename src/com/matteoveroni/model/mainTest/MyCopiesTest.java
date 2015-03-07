@@ -12,7 +12,6 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 /**
- *
  * @author Matteo Veroni
  */
 public class MyCopiesTest {
@@ -23,7 +22,7 @@ public class MyCopiesTest {
         Action myPrintMessageAction2 = new PrintMessageAction("Action2 message...");
 
         Action copyAction = new CopyAction(new PathCopier(new File("/prova"), new File("/prova2")));
-        
+
         Action errorAction = new ErrorAfterSomeWorkAction();
 
         Task taskToDo = new Task("print1", myPrintMessageAction);
@@ -41,10 +40,10 @@ public class MyCopiesTest {
         Thread.sleep(8000);
 
         /*
-        taskManager.searchTaskById(1);
-        taskManager.cancelTask(1);
+         taskManager.searchTaskById(1);
+         taskManager.cancelTask(1);
 
-        Thread.sleep(5000);*/
+         Thread.sleep(5000);*/
         taskManager.dispose();
 
     }

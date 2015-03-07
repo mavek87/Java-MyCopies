@@ -6,7 +6,6 @@ import java.io.IOException;
 /**
  * @author Matteo Veroni
  */
-
 public class CopyAction implements Action {
 
     Copiable copier;
@@ -16,7 +15,7 @@ public class CopyAction implements Action {
     }
 
     @Override
-    public void execute() throws IOException{
+    public void execute() throws IOException {
         copier.copy();
     }
 

@@ -11,7 +11,6 @@ import java.util.UUID;
 /**
  * @author Matteo Veroni
  */
-
 public class Task implements Runnable, Subject {
 
     private final Action action;

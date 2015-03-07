@@ -14,19 +14,18 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Matteo Veroni
  */
-
 public class TaskManager implements Observer, Disposable {
 
     private final ScheduledExecutorService scheduler;
     private final Map<Task, ScheduledFuture> tasks;
     private static final int NUMBER_OF_PARALLEL_THREADS = 4;
     private static final Logger LOG = LoggerFactory.getLogger(TaskManager.class);
-    
-    public TaskManager(){
+
+    public TaskManager() {
         scheduler = Executors.newScheduledThreadPool(NUMBER_OF_PARALLEL_THREADS);
         tasks = new HashMap<>();
     }
-    
+
     public void scheduleTask(Task task, long delay, TimeUnit timeUnit) {
         observeExceptions(task);
         ScheduledFuture scheduledFutureTask = scheduler.schedule(task, delay, timeUnit);
@@ -38,23 +37,23 @@ public class TaskManager implements Observer, Disposable {
         ScheduledFuture scheduledFutureTask = scheduler.scheduleAtFixedRate(task, initialDelay, delay, timeUnit);
         tasks.put(task, scheduledFutureTask);
     }
-    
+
     private void observeExceptions(Task task) {
         task.registerObserver(this);
     }
 
     @Override
-    public void update(Object subject){
+    public void update(Object subject) {
         Task task;
         task = (Task) subject;
-        
+
         ScheduledFuture scheduledFutureTaskToCancel = tasks.get(task);
         scheduledFutureTaskToCancel.cancel(true);
-        
+
         LOG.error("Task ID: " + task.getID()
-                 +" Name: " + task.getName() 
-                 +" " + task.getExceptionOccurred().toString());
-        
+            + " Name: " + task.getName()
+            + " " + task.getExceptionOccurred().toString());
+
         tasks.put(task, null);
     }
 
@@ -63,7 +62,7 @@ public class TaskManager implements Observer, Disposable {
         scheduler.shutdown();
         tasks.clear();
     }
-    
+
     public void disposeImmediately() {
         scheduler.shutdownNow();
         tasks.clear();

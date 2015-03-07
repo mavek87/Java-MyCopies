@@ -1,11 +1,12 @@
-package com.matteoveroni.resources;
+package com.matteoveroni.view.resources;
 
 /**
  * @author Matteo Veroni
  */
 public enum ScreenResources {
     
-    MAIN_SCREEN ("Main Screen", "view/MainMenuScreen.fxml");
+    MAIN_SCREEN ("Main Screen", "view/MainScreen.fxml"),
+    COPY_SCREEN ("Copy Screen", "view/CopyScreen.fxml");
 
     private final String screenName;
     private final String screenResource;

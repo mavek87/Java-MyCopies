@@ -63,6 +63,8 @@ public class ScreensController extends StackPane implements ScreenController {
             screenController.setStage(stage);
 
             addScreen(name, screenLoaded);
+            
+            LOG.info("Screen " + name + "loaded succesfully!");
             return true;
 
         } catch (Exception e) {
@@ -94,7 +96,7 @@ public class ScreensController extends StackPane implements ScreenController {
                                 Timeline fadeIn = new Timeline(
                                     new KeyFrame(Duration.ZERO,
                                         new KeyValue(opacity, 0.0)),
-                                    new KeyFrame(new Duration(800),
+                                    new KeyFrame(new Duration(400),
                                         new KeyValue(opacity, 1.0)));
                                 fadeIn.play();
                             }
@@ -108,10 +110,12 @@ public class ScreensController extends StackPane implements ScreenController {
                 Timeline fadeIn = new Timeline(
                     new KeyFrame(Duration.ZERO,
                         new KeyValue(opacity, 0.0)),
-                    new KeyFrame(new Duration(800),
+                    new KeyFrame(new Duration(400),
                         new KeyValue(opacity, 1.0)));
                 fadeIn.play();
             }
+            
+            LOG.info("Screen " + name + "loaded succesfully!");
             return true;
         } else {
             LOG.warn("Screen hasn\'t been loaded!");

@@ -4,7 +4,7 @@ import com.matteoveroni.control.screen.ScreensController;
 import com.matteoveroni.model.Model;
 import com.matteoveroni.control.screen.ScreensControllerFactory;
 import com.matteoveroni.model.ModelFactory;
-import com.matteoveroni.resources.ScreenResources;
+import com.matteoveroni.view.resources.ScreenResources;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 public class MyCopiesMain extends Application {
 
     private static final String APPLICATION_NAME = "MyCopies";
-    private static final String APPLICATION_VERSION = "0.0.3";
+    private static final String APPLICATION_VERSION = "0.0.4";
 
     private static final Logger LOG = LoggerFactory.getLogger(MyCopiesMain.class);
 
@@ -35,18 +35,19 @@ public class MyCopiesMain extends Application {
         ScreensController mainController = ScreensControllerFactory.getInstance();
         mainController.setModel(model);
         mainController.setStage(stage);
-        if(!mainController.loadScreen(ScreenResources.MAIN_SCREEN.screenName(), ScreenResources.MAIN_SCREEN.screenResource())){
+        if (!mainController.loadScreen(ScreenResources.MAIN_SCREEN.screenName(), ScreenResources.MAIN_SCREEN.screenResource())) {
             throw new RuntimeException("Not able to load " + ScreenResources.MAIN_SCREEN.screenName() + ", the program will be closed!");
         }
+        mainController.loadScreen(ScreenResources.COPY_SCREEN.screenName(), ScreenResources.COPY_SCREEN.screenResource());
         mainController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
         LOG.debug("Main Controller created and initializated");
-        
+
         Group root = new Group();
         root.getChildren().addAll(mainController);
-        
+
         Scene primaryScene = new Scene(root);
         LOG.debug("Primary scene created");
-        
+
         stage.setScene(primaryScene);
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
