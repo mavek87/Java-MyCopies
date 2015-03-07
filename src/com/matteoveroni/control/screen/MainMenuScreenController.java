@@ -4,9 +4,7 @@ import com.matteoveroni.model.Model;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,15 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * @author Matteo Veroni
  */
-
-public class MainMenuScreenController implements Initializable, ScreenController {
+public class MainMenuScreenController implements Initializable, ScreenController, ControllableScreen {
 
     @FXML
     private Button chooseSourcePathButton;
@@ -40,6 +36,7 @@ public class MainMenuScreenController implements Initializable, ScreenController
 
     private Model model;
     private Stage stage;
+    private ScreensController myController;
 
     private static final Logger LOG = LoggerFactory.getLogger(MainMenuScreenController.class);
 
@@ -47,7 +44,13 @@ public class MainMenuScreenController implements Initializable, ScreenController
 
         file, directory
     };
+
     private RadioButtonStates isRadioButtonFileOrDirectory = RadioButtonStates.file;
+
+    @Override
+    public void setScreensController(ScreensController screensController) {
+        myController = screensController;
+    }
 
     @Override
     public void setModel(Model model) {
@@ -57,15 +60,6 @@ public class MainMenuScreenController implements Initializable, ScreenController
     @Override
     public void setStage(Stage stage) {
         this.stage = stage;
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                model.dispose();
-                LOG.debug("Model disposed");
-                LOG.info("Exit");
-                //Platform.exit();
-            }
-        });
     }
 
     @FXML

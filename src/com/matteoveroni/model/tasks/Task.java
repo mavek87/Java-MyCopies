@@ -1,8 +1,8 @@
 package com.matteoveroni.model.tasks;
 
 import com.matteoveroni.model.actions.Action;
-import com.matteoveroni.model.designpatterns.Observer;
-import com.matteoveroni.model.designpatterns.Subject;
+import com.matteoveroni.model.patterns.Observer;
+import com.matteoveroni.model.patterns.Subject;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

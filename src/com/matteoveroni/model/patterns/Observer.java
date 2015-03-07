@@ -1,4 +1,4 @@
-package com.matteoveroni.model.designpatterns;
+package com.matteoveroni.model.patterns;
 
 /**
  * @author Matteo Veroni

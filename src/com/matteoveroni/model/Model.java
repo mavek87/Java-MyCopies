@@ -1,11 +1,12 @@
 package com.matteoveroni.model;
 
-import com.matteoveroni.model.commoninterfaces.Disposable;
+import com.matteoveroni.commons.interfaces.Disposable;
 import com.matteoveroni.model.actions.Action;
 import com.matteoveroni.model.actions.CopyAction;
 import com.matteoveroni.model.copy.PathCopier;
 import com.matteoveroni.model.tasks.Task;
 import com.matteoveroni.model.tasks.TaskManager;
+import com.matteoveroni.model.tasks.TaskManagerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Model implements Disposable{
 
-    private final TaskManager taskManager = new TaskManager();
+    private final TaskManager taskManager = TaskManagerFactory.getInstance();
     
     public void simpleCopy(String taskName, File source, File target) throws Exception {
 
@@ -27,7 +28,6 @@ public class Model implements Disposable{
         
         /*PathCopier pathCopier = new PathCopier(source, target);
         pathCopier.copy();*/
-
     }
     
     @Override

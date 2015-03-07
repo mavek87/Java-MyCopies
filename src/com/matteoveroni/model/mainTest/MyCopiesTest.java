@@ -7,6 +7,7 @@ import com.matteoveroni.model.actions.PrintMessageAction;
 import com.matteoveroni.model.copy.PathCopier;
 import com.matteoveroni.model.tasks.Task;
 import com.matteoveroni.model.tasks.TaskManager;
+import com.matteoveroni.model.tasks.TaskManagerFactory;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
@@ -30,7 +31,7 @@ public class MyCopiesTest {
         Task taskToDo3 = new Task("copia1", copyAction);
         Task taskToDo4 = new Task("error1", errorAction);
 
-        TaskManager taskManager = new TaskManager();
+        TaskManager taskManager = TaskManagerFactory.getInstance();
 
         taskManager.scheduleTaskAtFixedRate(taskToDo, 2000, 1000, TimeUnit.MILLISECONDS);
         taskManager.scheduleTaskAtFixedRate(taskToDo2, 0, 500, TimeUnit.MILLISECONDS);

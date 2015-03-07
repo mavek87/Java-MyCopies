@@ -9,8 +9,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Matteo Veroni
  */
-
-public class PathCopier implements Copier {
+public class PathCopier implements Copiable {
 
     private File source;
     private File target;

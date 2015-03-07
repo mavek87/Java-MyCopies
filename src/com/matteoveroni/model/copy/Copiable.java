@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * @author Matteo Veroni
  */
+public interface Copiable {
 
-public interface Copier {
     public void copy() throws IOException;
 }

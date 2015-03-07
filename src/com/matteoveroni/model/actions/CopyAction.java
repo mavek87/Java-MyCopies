@@ -1,6 +1,6 @@
 package com.matteoveroni.model.actions;
 
-import com.matteoveroni.model.copy.Copier;
+import com.matteoveroni.model.copy.Copiable;
 import java.io.IOException;
 
 /**
@@ -9,9 +9,9 @@ import java.io.IOException;
 
 public class CopyAction implements Action {
 
-    Copier copier;
+    Copiable copier;
 
-    public CopyAction(Copier copier) {
+    public CopyAction(Copiable copier) {
         this.copier = copier;
     }
 

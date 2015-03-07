@@ -1,8 +1,7 @@
 package com.matteoveroni.model.tasks;
 
-import com.matteoveroni.MyCopies;
-import com.matteoveroni.model.commoninterfaces.Disposable;
-import com.matteoveroni.model.designpatterns.Observer;
+import com.matteoveroni.commons.interfaces.Disposable;
+import com.matteoveroni.model.patterns.Observer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
