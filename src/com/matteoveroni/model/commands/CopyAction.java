@@ -1,4 +1,4 @@
-package com.matteoveroni.model.actions;
+package com.matteoveroni.model.commands;
 
 import com.matteoveroni.model.copy.Copiable;
 import java.io.IOException;

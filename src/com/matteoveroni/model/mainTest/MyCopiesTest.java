@@ -1,9 +1,9 @@
 package com.matteoveroni.model.mainTest;
 
-import com.matteoveroni.model.actions.Action;
-import com.matteoveroni.model.actions.CopyAction;
-import com.matteoveroni.model.actions.ErrorAfterSomeWorkAction;
-import com.matteoveroni.model.actions.PrintMessageAction;
+import com.matteoveroni.model.commands.Action;
+import com.matteoveroni.model.commands.CopyAction;
+import com.matteoveroni.model.commands.ErrorAfterSomeWorkAction;
+import com.matteoveroni.model.commands.PrintMessageAction;
 import com.matteoveroni.model.copy.PathCopier;
 import com.matteoveroni.model.tasks.Task;
 import com.matteoveroni.model.tasks.TaskManager;

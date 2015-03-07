@@ -1,4 +1,4 @@
-package com.matteoveroni.model.actions;
+package com.matteoveroni.model.commands;
 
 /**
  *

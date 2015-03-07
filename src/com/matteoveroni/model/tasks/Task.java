@@ -1,6 +1,6 @@
 package com.matteoveroni.model.tasks;
 
-import com.matteoveroni.model.actions.Action;
+import com.matteoveroni.model.commands.Action;
 import com.matteoveroni.model.patterns.Observer;
 import com.matteoveroni.model.patterns.Subject;
 import java.util.ArrayList;

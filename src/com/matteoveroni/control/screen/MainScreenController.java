@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Matteo Veroni
  */
-public class MainMenuScreenController implements Initializable, ScreenController, ControllableScreen {
+public class MainScreenController implements Initializable, ScreenController, ControllableScreen {
 
     @FXML
     private Button chooseSourcePathButton;
@@ -38,7 +38,7 @@ public class MainMenuScreenController implements Initializable, ScreenController
     private Stage stage;
     private ScreensController myController;
 
-    private static final Logger LOG = LoggerFactory.getLogger(MainMenuScreenController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MainScreenController.class);
 
     private enum RadioButtonStates {
 

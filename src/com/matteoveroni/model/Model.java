@@ -1,8 +1,8 @@
 package com.matteoveroni.model;
 
 import com.matteoveroni.commons.interfaces.Disposable;
-import com.matteoveroni.model.actions.Action;
-import com.matteoveroni.model.actions.CopyAction;
+import com.matteoveroni.model.commands.Action;
+import com.matteoveroni.model.commands.CopyAction;
 import com.matteoveroni.model.copy.PathCopier;
 import com.matteoveroni.model.tasks.Task;
 import com.matteoveroni.model.tasks.TaskManager;

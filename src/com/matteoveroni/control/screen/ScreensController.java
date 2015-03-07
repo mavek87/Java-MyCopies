@@ -1,7 +1,6 @@
 package com.matteoveroni.control.screen;
 
 import com.matteoveroni.FXMLMainLoader;
-import com.matteoveroni.FXMLMainLoaderFactory;
 import com.matteoveroni.model.Model;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,12 +51,7 @@ public class ScreensController extends StackPane implements ScreenController {
     public boolean loadScreen(String name, String resource) {
 
         try {
-
-//            FXMLMainLoader mainFXMLLoader = FXMLMainLoaderFactory.getInstance();
-//            FXMLLoader myLoader = mainFXMLLoader.loadResource(resource);
-            
-            FXMLLoader myLoader = FXMLMainLoaderFactory.getInstance().loadResource(resource);
-            LOG.info(myLoader.getLocation().toString());
+            FXMLLoader myLoader = FXMLMainLoader.getInstance().loadResource(resource);
             
             Parent screenLoaded = (Parent) myLoader.load();
             
