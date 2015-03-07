@@ -22,9 +22,7 @@ public class Model implements Disposable {
         Action copyAction = new CopyAction(new PathCopier(source, target));
         Task taskToDo = new Task(taskName, copyAction);
         taskManager.scheduleTask(taskToDo, 0, TimeUnit.MILLISECONDS);
-
-        /*PathCopier pathCopier = new PathCopier(source, target);
-         pathCopier.copy();*/
+        
     }
 
     @Override

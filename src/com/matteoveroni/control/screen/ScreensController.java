@@ -115,7 +115,7 @@ public class ScreensController extends StackPane implements ScreenController {
                 fadeIn.play();
             }
             
-            LOG.info("Screen " + name + " switched succesfully!");
+            LOG.info("Screen \'" + name + "\' succesfully setted!");
             return true;
         } else {
             LOG.warn("Screen hasn\'t been loaded!");

@@ -1,9 +1,6 @@
 package com.matteoveroni.model.commands;
 
 import com.matteoveroni.model.Model;
-import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,7 +22,6 @@ public class DisposeModelCommand implements Command {
     public void execute() {
         model.dispose();
         LOG.debug("Model disposed");
-        LOG.info("Exit");
     }
 
 }

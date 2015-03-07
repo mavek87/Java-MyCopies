@@ -7,11 +7,9 @@ import com.matteoveroni.model.ModelFactory;
 import com.matteoveroni.model.commands.DisposeModelCommand;
 import com.matteoveroni.view.resources.ScreenResources;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,6 +59,7 @@ public class MyCopiesMain extends Application {
     @Override
     public void stop(){
         new DisposeModelCommand(model).execute();
+        LOG.info("Exit");
     }
 
     /**
