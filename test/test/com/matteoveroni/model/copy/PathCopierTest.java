@@ -1,5 +1,7 @@
-package com.matteoveroni.model.copy;
+package test.com.matteoveroni.model.copy;
 
+import com.matteoveroni.model.copy.PathCopier;
+import com.matteoveroni.model.copy.PathCopier;
 import java.io.File;
 import org.junit.After;
 import org.junit.AfterClass;
