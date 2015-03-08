@@ -1,4 +1,4 @@
-package test.com.matteoveroni.model.copy;
+package com.matteoveroni.model.copy;
 
 import com.matteoveroni.model.copy.PathCopier;
 import com.matteoveroni.model.copy.PathCopier;
