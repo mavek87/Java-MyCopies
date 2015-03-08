@@ -64,7 +64,7 @@ public class ScreensController extends StackPane implements ScreenController {
 
             addScreen(name, screenLoaded);
             
-            LOG.info("Screen " + name + " loaded succesfully!");
+            LOG.info("Screen \'" + name + "\' loaded succesfully!");
             return true;
 
         } catch (Exception e) {
@@ -76,10 +76,11 @@ public class ScreensController extends StackPane implements ScreenController {
 
     public boolean setScreen(final String name) {
 
-        if (screens.get(name) != null) { //screen loaded
+        //If screen loaded
+        if (screens.get(name) != null) { 
             final DoubleProperty opacity = opacityProperty();
 
-            //Is there is more than one screen
+            //Is there more than one screen
             if (!getChildren().isEmpty()) {
                 Timeline fade = new Timeline(
                     new KeyFrame(Duration.ZERO,
@@ -89,9 +90,9 @@ public class ScreensController extends StackPane implements ScreenController {
 
                             @Override
                             public void handle(Event t) {
-                                //remove displayed screen
+                                //Remove displayed screen
                                 getChildren().remove(0);
-                                //add new screen
+                                //Add new screen
                                 getChildren().add(0, screens.get(name));
                                 Timeline fadeIn = new Timeline(
                                     new KeyFrame(Duration.ZERO,
@@ -104,7 +105,7 @@ public class ScreensController extends StackPane implements ScreenController {
                         }, new KeyValue(opacity, 0.0)));
                 fade.play();
             } else {
-                //no one else been displayed, then just show
+                //No one else been displayed, then just show
                 setOpacity(0.0);
                 getChildren().add(screens.get(name));
                 Timeline fadeIn = new Timeline(
@@ -118,7 +119,7 @@ public class ScreensController extends StackPane implements ScreenController {
             LOG.info("Screen \'" + name + "\' succesfully setted!");
             return true;
         } else {
-            LOG.warn("Screen hasn\'t been loaded!");
+            LOG.warn("Screen \'" + name + "\' hasn\'t been loaded!");
             return false;
         }
     }
@@ -129,7 +130,7 @@ public class ScreensController extends StackPane implements ScreenController {
 
     public boolean unloadScreen(String name) {
         if (screens.remove(name) == null) {
-            LOG.warn("Screen didn\'t exist!");
+            LOG.warn("Screen \'" + name + "\' didn\'t exists!");
             return false;
         } else {
             return true;

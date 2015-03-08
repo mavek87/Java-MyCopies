@@ -2,7 +2,6 @@ package com.matteoveroni.model.copy;
 
 import java.io.File;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,10 +42,11 @@ public class PathCopier implements Copiable {
         if (validSource() && validTarget()) {
             if (source.isFile() && target.isFile()) {
                 FileUtils.copyFile(source, target);
+                
             } else if (source.isFile() && target.isDirectory()) {
                 FileUtils.copyFileToDirectory(source, target);
             } else if (source.isDirectory() && target.isDirectory()) {
-                FileUtils.copyDirectory(source, target);
+                FileUtils.copyDirectoryToDirectory(source, target);
             } else if (source.isDirectory() && target.isFile()) {
                 throwPersonalizedIOError("Can\'t write a directory inside a file!");
             }
