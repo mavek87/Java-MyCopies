@@ -1,5 +1,6 @@
 package com.matteoveroni;
 
+import com.matteoveroni.control.screen.ControllersBuilder;
 import com.matteoveroni.control.screen.ScreensController;
 import com.matteoveroni.model.Model;
 import com.matteoveroni.control.screen.ScreensControllerFactory;
@@ -18,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class MyCopiesMain extends Application {
 
     private static final String APPLICATION_NAME = "MyCopies";
-    private static final String APPLICATION_VERSION = "0.0.6";
+    private static final String APPLICATION_VERSION = "0.0.7";
     
     private final Model model;
 
@@ -34,15 +35,9 @@ public class MyCopiesMain extends Application {
 
         stage.setTitle(APPLICATION_NAME + " v. " + APPLICATION_VERSION);
         
-        ScreensController mainController = ScreensControllerFactory.getInstance();
-        mainController.setModel(model);
-        mainController.setStage(stage);
-        if (!mainController.loadScreen(ScreenResources.MAIN_SCREEN.screenName(), ScreenResources.MAIN_SCREEN.screenResource())) {
-            throw new RuntimeException("Not able to load " + ScreenResources.MAIN_SCREEN.screenName() + ", the program will be closed!");
-        }
-        mainController.loadScreen(ScreenResources.COPY_SCREEN.screenName(), ScreenResources.COPY_SCREEN.screenResource());
-        mainController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
-
+        ControllersBuilder controllersBuilder = new ControllersBuilder(stage, model);
+        ScreensController mainController = controllersBuilder.build();
+       
         Scene primaryScene = new Scene(mainController);
         LOG.debug("Primary scene created");
 

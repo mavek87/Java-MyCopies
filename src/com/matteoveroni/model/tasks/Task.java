@@ -5,6 +5,7 @@ import com.matteoveroni.model.patterns.Observer;
 import com.matteoveroni.model.patterns.Subject;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,14 +19,13 @@ public class Task implements Runnable, Subject {
     private String name;
     private final List<Observer> exceptionObservers;
 
-    public enum LastStateAfterComplete {
+    public enum LastOperationStatus {
 
         none, done, failed
     };
 
-    private LastStateAfterComplete lastStateAfterComplete;
-
-    private Date lastSuccesDate;
+    private volatile LastOperationStatus lastOperationStatus = LastOperationStatus.none;
+    private volatile Date lastSuccessfullOperationDate;
     private volatile Exception exceptionOccurred;
 
     public Task(String name, Action action) {
@@ -34,7 +34,7 @@ public class Task implements Runnable, Subject {
         this.action = action;
         this.exceptionObservers = new ArrayList<>();
         this.exceptionOccurred = null;
-        this.lastStateAfterComplete = LastStateAfterComplete.none;
+        this.lastOperationStatus = LastOperationStatus.none;
     }
 
     @Override
@@ -42,8 +42,11 @@ public class Task implements Runnable, Subject {
         synchronized (this) {
             try {
                 action.execute();
+                lastOperationStatus = LastOperationStatus.done;
+                lastSuccessfullOperationDate = GregorianCalendar.getInstance().getTime();
             } catch (Exception ex) {
                 exceptionOccurred = ex;
+                lastOperationStatus = LastOperationStatus.failed;
                 notifyObservers();
                 removeAllTheObservers();
             }
@@ -66,7 +69,6 @@ public class Task implements Runnable, Subject {
     public void notifyObservers() {
         for (Observer exceptionObserver : exceptionObservers) {
             exceptionObserver.update(this);
-
         }
     }
 
@@ -87,20 +89,12 @@ public class Task implements Runnable, Subject {
         this.name = name;
     }
 
-    public LastStateAfterComplete getLastStateAfterComplete() {
-        return lastStateAfterComplete;
-    }
-
-    public void setLastStateAfterComplete(LastStateAfterComplete lastStateAfterComplete) {
-        this.lastStateAfterComplete = lastStateAfterComplete;
+    public LastOperationStatus getLastStateAfterComplete() {
+        return lastOperationStatus;
     }
 
     public Date getLastSuccesDate() {
-        return lastSuccesDate;
-    }
-
-    public void setLastSuccesDate(Date lastSuccesDate) {
-        this.lastSuccesDate = lastSuccesDate;
+        return lastSuccessfullOperationDate;
     }
 
     public Exception getExceptionOccurred() {
