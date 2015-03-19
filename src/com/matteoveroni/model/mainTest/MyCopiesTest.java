@@ -1,9 +1,9 @@
 package com.matteoveroni.model.mainTest;
 
-import com.matteoveroni.model.commands.Action;
-import com.matteoveroni.model.commands.CopyAction;
-import com.matteoveroni.model.commands.ErrorAfterSomeWorkAction;
-import com.matteoveroni.model.commands.PrintMessageAction;
+import com.matteoveroni.model.actions.Action;
+import com.matteoveroni.model.actions.CopyAction;
+import com.matteoveroni.model.actions.FakeErrorAfterSomeWorkAction;
+import com.matteoveroni.model.actions.PrintMessageAction;
 import com.matteoveroni.model.copy.PathCopier;
 import com.matteoveroni.model.tasks.Task;
 import com.matteoveroni.model.tasks.TaskManager;
@@ -23,7 +23,7 @@ public class MyCopiesTest {
 
         Action copyAction = new CopyAction(new PathCopier(new File("/prova"), new File("/prova2")));
 
-        Action errorAction = new ErrorAfterSomeWorkAction();
+        Action errorAction = new FakeErrorAfterSomeWorkAction();
 
         Task taskToDo = new Task("print1", myPrintMessageAction);
         Task taskToDo2 = new Task("print2", myPrintMessageAction2);

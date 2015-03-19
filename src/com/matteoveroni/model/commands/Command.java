@@ -5,5 +5,5 @@ package com.matteoveroni.model.commands;
  */
 public interface Command {
 
-    public void execute();
+    public void execute() throws Exception;
 }

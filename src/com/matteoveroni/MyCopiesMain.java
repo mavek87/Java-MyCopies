@@ -1,12 +1,9 @@
 package com.matteoveroni;
 
-import com.matteoveroni.control.screen.ControllersBuilder;
-import com.matteoveroni.control.screen.ScreensController;
+import com.matteoveroni.control.screens.ControllersBuilder;
+import com.matteoveroni.control.screens.ScreensController;
 import com.matteoveroni.model.Model;
-import com.matteoveroni.control.screen.ScreensControllerFactory;
 import com.matteoveroni.model.ModelFactory;
-import com.matteoveroni.model.commands.ExitCommand;
-import com.matteoveroni.view.resources.ScreenResources;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -48,7 +45,8 @@ public class MyCopiesMain extends Application {
     
     @Override
     public void stop(){
-        new ExitCommand(model).execute();
+        LOG.info("The application is going to be closed");
+        model.dispose();
     }
 
     /**

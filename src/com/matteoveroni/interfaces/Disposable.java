@@ -1,4 +1,4 @@
-package com.matteoveroni.commons.interfaces;
+package com.matteoveroni.interfaces;
 
 /**
  * @author Matteo Veroni

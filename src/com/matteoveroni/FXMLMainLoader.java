@@ -9,10 +9,9 @@ public class FXMLMainLoader {
 
     private static volatile FXMLMainLoader instance = null;
 
-    private FXMLMainLoader() {
-    }
+    private FXMLMainLoader() {}
 
-    public static synchronized FXMLMainLoader getInstance() {
+    public static final synchronized FXMLMainLoader getInstance() {
         if (instance == null) {
             instance = new FXMLMainLoader();
         }

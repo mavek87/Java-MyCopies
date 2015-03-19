@@ -1,6 +1,6 @@
 package com.matteoveroni.model.tasks;
 
-import com.matteoveroni.commons.interfaces.Disposable;
+import com.matteoveroni.interfaces.Disposable;
 import com.matteoveroni.model.patterns.Observer;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,17 +44,17 @@ public class TaskManager implements Observer, Disposable {
 
     @Override
     public void update(Object subject) {
-        Task task;
-        task = (Task) subject;
+        Task taskWithException;
+        taskWithException = (Task) subject;
 
-        ScheduledFuture scheduledFutureTaskToCancel = tasks.get(task);
+        ScheduledFuture scheduledFutureTaskToCancel = tasks.get(taskWithException);
         scheduledFutureTaskToCancel.cancel(true);
 
-        LOG.error("Task ID: " + task.getID()
-            + " Name: " + task.getName()
-            + " " + task.getExceptionOccurred().toString());
+        LOG.error("Task ID: " + taskWithException.getID()
+            + " Name: " + taskWithException.getName()
+            + " " + taskWithException.getException().toString());
 
-        tasks.put(task, null);
+        tasks.put(taskWithException, null);
     }
 
     @Override

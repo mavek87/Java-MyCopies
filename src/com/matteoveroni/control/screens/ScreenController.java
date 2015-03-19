@@ -1,4 +1,4 @@
-package com.matteoveroni.control.screen;
+package com.matteoveroni.control.screens;
 
 import com.matteoveroni.model.Model;
 import javafx.stage.Stage;

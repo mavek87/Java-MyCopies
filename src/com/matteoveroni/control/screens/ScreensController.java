@@ -1,4 +1,4 @@
-package com.matteoveroni.control.screen;
+package com.matteoveroni.control.screens;
 
 import com.matteoveroni.FXMLMainLoader;
 import com.matteoveroni.model.Model;

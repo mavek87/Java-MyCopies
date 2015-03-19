@@ -1,4 +1,4 @@
-package com.matteoveroni.model.commands;
+package com.matteoveroni.model.actions;
 
 /**
  * @author Matteo Veroni

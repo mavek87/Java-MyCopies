@@ -1,4 +1,4 @@
-package com.matteoveroni.model.commands;
+package com.matteoveroni.model.actions;
 
 import java.io.IOException;
 import org.slf4j.Logger;
@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Matteo Veroni
  */
-public class ErrorAfterSomeWorkAction implements Action {
+public class FakeErrorAfterSomeWorkAction implements Action {
     
     private static int counter = 0;
-    private static final Logger LOG = LoggerFactory.getLogger(ErrorAfterSomeWorkAction.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FakeErrorAfterSomeWorkAction.class);
 
     @Override
     public void execute() throws Exception {

@@ -7,7 +7,7 @@ public class ModelFactory {
     
     private ModelFactory(){}
     
-    public static Model getInstance(){
+    public static final Model getInstance(){
         return new Model();
     }
 }
