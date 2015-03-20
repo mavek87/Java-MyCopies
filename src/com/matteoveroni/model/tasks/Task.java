@@ -14,9 +14,10 @@ import java.util.UUID;
  */
 public class Task implements Runnable, Subject {
 
-    private final Action action;
-    private final UUID ID;
-    private String name;
+	private final UUID taskID;
+	private String taskName;
+    private final Action taskAction;
+	
     private final List<Observer> exceptionObservers;
 
     public enum LastOperationStatus {
@@ -28,10 +29,10 @@ public class Task implements Runnable, Subject {
     private volatile Date lastSuccessfullOperationDate;
     private volatile Exception exceptionOccurred;
 
-    public Task(String name, Action action) {
-        this.ID = UUID.randomUUID();
-        this.name = name;
-        this.action = action;
+    public Task(String taskName, Action taskAction) {
+        this.taskID = UUID.randomUUID();
+        this.taskName = taskName;
+        this.taskAction = taskAction;
         this.exceptionObservers = new ArrayList<>();
         this.exceptionOccurred = null;
         this.lastOperationStatus = LastOperationStatus.none;
@@ -41,7 +42,7 @@ public class Task implements Runnable, Subject {
     public void run() {
         synchronized (this) {
             try {
-                action.execute();
+                taskAction.execute();
                 lastOperationStatus = LastOperationStatus.done;
                 lastSuccessfullOperationDate = GregorianCalendar.getInstance().getTime();
             } catch (Exception ex) {
@@ -78,15 +79,15 @@ public class Task implements Runnable, Subject {
 
     // Public Task getters and setters:
     public UUID getID() {
-        return ID;
+        return taskID;
     }
 
     public String getName() {
-        return name;
+        return taskName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.taskName = name;
     }
 
     public LastOperationStatus getLastStateAfterComplete() {

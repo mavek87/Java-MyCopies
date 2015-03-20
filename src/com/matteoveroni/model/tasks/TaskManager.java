@@ -16,15 +16,10 @@ import org.slf4j.LoggerFactory;
  */
 public class TaskManager implements Observer, Disposable {
 
-    private final ScheduledExecutorService scheduler;
-    private final Map<Task, ScheduledFuture> tasks;
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(NUMBER_OF_PARALLEL_THREADS);;
+    private final Map<Task, ScheduledFuture> tasks = new HashMap<>();
     private static final int NUMBER_OF_PARALLEL_THREADS = 4;
     private static final Logger LOG = LoggerFactory.getLogger(TaskManager.class);
-
-    public TaskManager() {
-        scheduler = Executors.newScheduledThreadPool(NUMBER_OF_PARALLEL_THREADS);
-        tasks = new HashMap<>();
-    }
 
     public void scheduleTask(Task task, long delay, TimeUnit timeUnit) {
         observeExceptions(task);
@@ -43,7 +38,7 @@ public class TaskManager implements Observer, Disposable {
     }
 
     @Override
-    public void update(Object task) {
+    public void update(Object task){
         Task taskWithException = (Task) task;
 
         ScheduledFuture scheduledFutureTaskToCancel = tasks.get(taskWithException);
