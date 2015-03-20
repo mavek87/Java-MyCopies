@@ -9,12 +9,12 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.matteoveroni.control.screens.MainScreenController">
    <children>
       <Button fx:id="goToCopyScreenButton" layoutX="42.0" layoutY="324.0" mnemonicParsing="false" onAction="#goToCopyScreen" text="Copy a file" />
-      <TableView layoutX="42.0" layoutY="38.0" prefHeight="263.0" prefWidth="237.0">
+      <TableView fx:id="ScheduledTasksTable" layoutX="42.0" layoutY="38.0" prefHeight="263.0" prefWidth="218.0">
         <columns>
           <TableColumn prefWidth="107.0" text="Task Name" />
           <TableColumn minWidth="0.0" prefWidth="112.0" text="Action" />
         </columns>
       </TableView>
-      <Label layoutX="81.0" layoutY="5.0" prefHeight="25.0" prefWidth="147.0" text="Scheduled Tasks table" />
+      <Label layoutX="114.0" layoutY="13.0" prefHeight="25.0" prefWidth="93.0" text="Scheduled Tasks" />
    </children>
 </AnchorPane>

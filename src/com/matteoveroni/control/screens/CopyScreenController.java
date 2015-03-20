@@ -1,6 +1,8 @@
 package com.matteoveroni.control.screens;
 
 import com.matteoveroni.model.Model;
+import com.matteoveroni.model.tasks.TaskManager;
+import com.matteoveroni.model.tasks.TaskManagerFactory;
 import com.matteoveroni.view.resources.ScreenResources;
 import java.io.File;
 import java.net.URL;

@@ -43,9 +43,8 @@ public class TaskManager implements Observer, Disposable {
     }
 
     @Override
-    public void update(Object subject) {
-        Task taskWithException;
-        taskWithException = (Task) subject;
+    public void update(Object task) {
+        Task taskWithException = (Task) task;
 
         ScheduledFuture scheduledFutureTaskToCancel = tasks.get(taskWithException);
         scheduledFutureTaskToCancel.cancel(true);
@@ -53,7 +52,6 @@ public class TaskManager implements Observer, Disposable {
         LOG.error("Task ID: " + taskWithException.getID()
             + " Name: " + taskWithException.getName()
             + " " + taskWithException.getException().toString());
-
         tasks.put(taskWithException, null);
     }
 

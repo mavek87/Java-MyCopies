@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +26,14 @@ public class MainScreenController implements Initializable, ControllableScreen, 
     private URL location;
     @FXML
     private Button goToCopyScreenButton;
+    @FXML
+    private TableView<?> ScheduledTasksTable;
     
     private Model model;
     private Stage stage;
     private ScreensController myController;
 
-    private static final Logger LOG = LoggerFactory.getLogger(CopyScreenController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MainScreenController.class);
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -54,6 +57,6 @@ public class MainScreenController implements Initializable, ControllableScreen, 
     @FXML
     void goToCopyScreen(ActionEvent event) {
         myController.setScreen(ScreenResources.COPY_SCREEN.screenName());
-    }
+    }	
 
 }
