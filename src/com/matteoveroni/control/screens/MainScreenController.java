@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -18,7 +19,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Matteo Veroni
  */
-public class MainScreenController implements ScreenControllable, ScreenSettable  {
+public class MainScreenController implements ScreenControllable, ScreenSettable, Initializable  {
         
     private Model model;
     private Stage stage;
@@ -36,6 +37,11 @@ public class MainScreenController implements ScreenControllable, ScreenSettable 
     private TableView<?> ScheduledTasksTable;    
 
     private static final Logger LOG = LoggerFactory.getLogger(MainScreenController.class);
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+    }
 
     @Override
     public void setScreensController(ScreensController screensController) {

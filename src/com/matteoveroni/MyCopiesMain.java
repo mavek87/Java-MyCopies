@@ -45,7 +45,7 @@ public class MyCopiesMain extends Application {
     
     @Override
     public void stop(){
-        LOG.info("The application is going to be closed");
+        LOG.debug("The application is going to be closed");
         model.dispose();
     }
 
