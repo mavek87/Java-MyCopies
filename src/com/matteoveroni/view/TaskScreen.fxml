@@ -10,7 +10,7 @@
    <children>
       <Label layoutX="82.0" layoutY="60.0" text="Task Name:" />
       <Label layoutX="82.0" layoutY="120.0" text="Type of Task:" />
-      <Button fx:id="OkButton" layoutX="81.0" layoutY="309.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Ok" />
+      <Button fx:id="OkButton" layoutX="81.0" layoutY="309.0" mnemonicParsing="false" onAction="#okGoToSpecificTaskScreen" prefHeight="25.0" prefWidth="63.0" text="Ok" />
       <Button fx:id="CancelButton" layoutX="472.0" layoutY="310.0" mnemonicParsing="false" onAction="#cancelGoToMainScreen" text="Cancel" />
       <TextField fx:id="taskNameTextField" layoutX="250.0" layoutY="56.0" prefHeight="25.0" prefWidth="199.0" />
       <Label layoutX="82.0" layoutY="190.0" prefHeight="15.0" prefWidth="88.0" text="Notes:" />

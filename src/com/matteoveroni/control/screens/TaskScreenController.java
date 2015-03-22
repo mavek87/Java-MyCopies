@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialogs;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -72,23 +73,33 @@ public class TaskScreenController implements ScreenSettable, ScreenControllable,
     
     @FXML
     void okGoToSpecificTaskScreen(ActionEvent event) {
-        myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
-        taskSelected = TypeOfTaskComboBox.valueProperty().get();
-        switch(taskSelected){
-            case singlecopy:
-                myController.setScreen(ScreenResources.COPY_SCREEN.name());
-                break;
-            case scheduledcopy:
-                /*Dialogs.showInformationDialog(stage, "I have a great message for you!", 
-    "Information Dialog", "title");*/
-                myController.setScreen(ScreenResources.MAIN_SCREEN.name());
-                break;
-            case alarm:
-                myController.setScreen(ScreenResources.MAIN_SCREEN.name());
-                break;
-            default:
-                LOG.warn("You have to select a type of Task");
-                break;
+        if(taskSelected != null){
+            taskSelected = TypeOfTaskComboBox.valueProperty().get();
+        
+            switch(taskSelected){
+                case singlecopy:
+                    myController.setScreen(ScreenResources.COPY_SCREEN.screenName());
+                    break;
+                case scheduledcopy:                   
+                    Dialogs.showWarningDialog(stage,
+                                            "This function is not already implemented. You will be redirected back to the main menu",
+                                            "Warning",
+                                            "Function not yet implemented");
+                    myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
+                    break;
+                case alarm:
+                    Dialogs.showWarningDialog(stage, 
+                                               "This function is not already implemented. You will be redirected back to the main menu",
+                                               "Warning",
+                                               "Function not yet implemented");
+                    myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
+                    break;
+                default:
+                    LOG.warn("You have to select a type of Task");
+                    break;
+            }
+        }else{
+            Dialogs.showErrorDialog(stage, "I have a great message for you!", "Error", "title");
         }
     }
     
