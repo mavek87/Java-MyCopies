@@ -32,8 +32,6 @@ public class MainScreenController implements ScreenControllable, ScreenSettable,
     @FXML
     private Button NewTaskButton;
     @FXML
-    private Button CopyAFileButton;
-    @FXML
     private TableView<?> ScheduledTasksTable;    
 
     private static final Logger LOG = LoggerFactory.getLogger(MainScreenController.class);
@@ -57,11 +55,6 @@ public class MainScreenController implements ScreenControllable, ScreenSettable,
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-    
-    @FXML
-    void goToCopyScreen(ActionEvent event) {
-        myController.setScreen(ScreenResources.COPY_SCREEN.screenName());
-    }	
     
     @FXML
     void goToTaskScreen(ActionEvent event) {

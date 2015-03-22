@@ -32,7 +32,7 @@ public class TaskScreenController implements ScreenSettable, ScreenControllable,
     private String TaskName;
     private String Notes;
     private TaskType taskSelected;
-    
+
     @FXML
     private Button OkButton;
     @FXML
@@ -45,12 +45,13 @@ public class TaskScreenController implements ScreenSettable, ScreenControllable,
     private TextField taskNameTextField;
 
     private static final Logger LOG = LoggerFactory.getLogger(TaskScreenController.class);
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TypeOfTaskComboBox.setPromptText("Select a Task Type");
         TypeOfTaskComboBox.setItems(FXCollections.observableArrayList(TaskType.values()));
     }
-    
+
     @Override
     public void setModel(Model model) {
         this.model = model;
@@ -65,48 +66,51 @@ public class TaskScreenController implements ScreenSettable, ScreenControllable,
     public void setScreensController(ScreensController screensController) {
         myController = screensController;
     }
-    
+
     @FXML
     void cancelGoToMainScreen(ActionEvent event) {
         myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
-    }	
-    
+    }
+
     @FXML
     void okGoToSpecificTaskScreen(ActionEvent event) {
-        if(taskSelected != null){
+        if (taskSelected != null) {
+
             taskSelected = TypeOfTaskComboBox.valueProperty().get();
-        
-            switch(taskSelected){
+
+            switch (taskSelected) {
                 case singlecopy:
                     myController.setScreen(ScreenResources.COPY_SCREEN.screenName());
                     break;
-                case scheduledcopy:                   
+                case scheduledcopy:
                     Dialogs.showWarningDialog(stage,
-                                            "This function is not already implemented. You will be redirected back to the main menu",
-                                            "Warning",
-                                            "Function not yet implemented");
+                        "This function is not yet implemented. You will be redirected back to the main menu.",
+                        "Warning",
+                        "Function not yet implemented");
                     myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
                     break;
                 case alarm:
-                    Dialogs.showWarningDialog(stage, 
-                                               "This function is not already implemented. You will be redirected back to the main menu",
-                                               "Warning",
-                                               "Function not yet implemented");
+                    Dialogs.showWarningDialog(stage,
+                        "This function is not yet implemented. You will be redirected back to the main menu.",
+                        "Warning",
+                        "Function not yet implemented");
                     myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
                     break;
                 default:
                     LOG.warn("You have to select a type of Task");
                     break;
             }
-        }else{
-            Dialogs.showErrorDialog(stage, "I have a great message for you!", "Error", "title");
+
+        } else {
+            Dialogs.showWarningDialog(stage, "You haven\'t selected any Task Type", "Warning", "Task Type not selected!");
         }
+
     }
-    
+
     @FXML
-    void selectedNewTypeOfTask(ActionEvent event){
+    void selectedNewTypeOfTask(ActionEvent event) {
         taskSelected = TypeOfTaskComboBox.valueProperty().get();
-        switch(taskSelected){
+        switch (taskSelected) {
             case singlecopy:
                 LOG.info("Selected \'" + taskSelected + "\' task");
                 break;
