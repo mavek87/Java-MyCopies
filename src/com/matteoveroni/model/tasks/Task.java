@@ -14,10 +14,10 @@ import java.util.UUID;
  */
 public class Task implements Runnable, Subject {
 
-	private final UUID taskID;
-	private String taskName;
+    private final UUID taskID;
+    private String taskName;
     private final Action taskAction;
-	
+
     private final List<Observer> exceptionObservers;
 
     public enum LastOperationStatus {

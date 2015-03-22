@@ -17,19 +17,20 @@ import org.slf4j.LoggerFactory;
  */
 public class Model implements Disposable {
 
-	private final TaskManager taskManager = TaskManagerFactory.getInstance();
-	private static final Logger LOG = LoggerFactory.getLogger(Model.class);
+    private final TaskManager taskManager = TaskManagerFactory.getInstance();
+    private static final Logger LOG = LoggerFactory.getLogger(Model.class);
 
-	public void simpleCopy(String taskName, File source, File target) throws Exception {
+    public void simpleCopy(String taskName, File source, File target) throws Exception {
 
-		Action copyAction = new CopyAction(new PathCopier(source, target));
-		Task taskToDo = new Task(taskName, copyAction);
-		taskManager.scheduleTask(taskToDo, 0, TimeUnit.MILLISECONDS);
-	}
+        Action copyAction = new CopyAction(new PathCopier(source, target));
+        Task taskToDo = new Task(taskName, copyAction);
+        taskManager.addTask(taskToDo);
+        taskManager.scheduleTask(taskToDo, 0, TimeUnit.MILLISECONDS);
+    }
 
-	@Override
-	public void dispose() {
-		taskManager.dispose();
-		LOG.debug("Model disposed");
-	}
+    @Override
+    public void dispose() {
+        taskManager.dispose();
+        LOG.debug("Model disposed");
+    }
 }

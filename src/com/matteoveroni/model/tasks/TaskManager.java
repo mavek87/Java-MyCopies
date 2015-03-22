@@ -16,21 +16,54 @@ import org.slf4j.LoggerFactory;
  */
 public class TaskManager implements Observer, Disposable {
 
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(NUMBER_OF_PARALLEL_THREADS);;
-    private final Map<Task, ScheduledFuture> tasks = new HashMap<>();
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(NUMBER_OF_PARALLEL_THREADS);
     private static final int NUMBER_OF_PARALLEL_THREADS = 4;
+    private final Map<Task, ScheduledFuture> tasks = new HashMap<>();
     private static final Logger LOG = LoggerFactory.getLogger(TaskManager.class);
 
+    public void addTask(Task task) {
+        if (this.containsTask(task)) {
+            LOG.debug("Task \'" + task.getName() + "\' is already present, cannot add another clone");
+        } else {
+            tasks.put(task, null);
+            LOG.debug("Task \'" + task.getName() + "\' added");
+        }
+    }
+
+    public void removeTask(Task task) {
+        if (this.containsTask(task)) {
+            tasks.remove(task);
+            LOG.debug("Task \'" + task.getName() + "\' removed");
+        } else {
+            LOG.debug("Task \'" + task.getName() + "\' is not present, cannot be removed");
+        }
+
+    }
+    
+    public boolean containsTask(Task task){
+        return tasks.containsKey(task);
+    }
+
     public void scheduleTask(Task task, long delay, TimeUnit timeUnit) {
-        observeExceptions(task);
-        ScheduledFuture scheduledFutureTask = scheduler.schedule(task, delay, timeUnit);
-        tasks.put(task, scheduledFutureTask);
+        if (this.containsTask(task)) {
+            observeExceptions(task);
+            ScheduledFuture scheduledFutureTask = scheduler.schedule(task, delay, timeUnit);
+            tasks.put(task, scheduledFutureTask);
+            LOG.debug("Task \'" + task.getName() + "\' scheduled");
+        } else {
+            LOG.debug("Task \'" + task.getName() + "\' was not added to TaskManager so it cannot be scheduled");
+        }
     }
 
     public void scheduleTaskAtFixedRate(Task task, long initialDelay, long delay, TimeUnit timeUnit) {
-        observeExceptions(task);
-        ScheduledFuture scheduledFutureTask = scheduler.scheduleAtFixedRate(task, initialDelay, delay, timeUnit);
-        tasks.put(task, scheduledFutureTask);
+        if (this.containsTask(task)) {
+            observeExceptions(task);
+            ScheduledFuture scheduledFutureTask = scheduler.scheduleAtFixedRate(task, initialDelay, delay, timeUnit);
+            tasks.put(task, scheduledFutureTask);
+            LOG.debug("Task \'" + task.getName() + "\' scheduled at fixed rate");
+        } else {
+            LOG.debug("Task \'" + task.getName() + "\' was not added to TaskManager so it cannot be scheduled at fixed rate");
+        }
     }
 
     private void observeExceptions(Task task) {
@@ -38,15 +71,16 @@ public class TaskManager implements Observer, Disposable {
     }
 
     @Override
-    public void update(Object task){
-        Task taskWithException = (Task) task;
+    public void update(Object objectTaskWithException) {
+        
+        Task taskWithException = (Task) objectTaskWithException;
 
-        ScheduledFuture scheduledFutureTaskToCancel = tasks.get(taskWithException);
-        scheduledFutureTaskToCancel.cancel(true);
+        tasks.get(taskWithException).cancel(true);
 
         LOG.error("Task ID: " + taskWithException.getID()
-            + " Name: " + taskWithException.getName()
-            + " " + taskWithException.getException().toString());
+                   + " Name: " + taskWithException.getName()
+                   + " " + taskWithException.getException().toString());
+
         tasks.put(taskWithException, null);
     }
 
