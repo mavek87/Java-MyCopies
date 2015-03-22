@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -18,7 +17,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Matteo Veroni
  */
-public class MainScreenController implements Initializable, ControllableScreen, ScreenController  {
+public class MainScreenController implements ControllableScreen, ScreenController  {
         
     @FXML
     private ResourceBundle resources;
@@ -34,10 +33,6 @@ public class MainScreenController implements Initializable, ControllableScreen, 
     private ScreensController myController;
 
     private static final Logger LOG = LoggerFactory.getLogger(MainScreenController.class);
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }    
 
     @Override
     public void setScreensController(ScreensController screensController) {
@@ -58,5 +53,11 @@ public class MainScreenController implements Initializable, ControllableScreen, 
     void goToCopyScreen(ActionEvent event) {
         myController.setScreen(ScreenResources.COPY_SCREEN.screenName());
     }	
+    
+    @FXML
+    void initialize() {
+        assert goToCopyScreenButton != null : "fx:id=\"goToCopyScreenButton\" was not injected: check your FXML file 'MainScreen.fxml'.";
+        assert ScheduledTasksTable != null : "fx:id=\"ScheduledTasksTable\" was not injected: check your FXML file 'MainScreen.fxml'.";
+    }
 
 }

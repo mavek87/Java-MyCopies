@@ -21,7 +21,6 @@ public class Model implements Disposable {
     private static final Logger LOG = LoggerFactory.getLogger(Model.class);
 
     public void simpleCopy(String taskName, File source, File target) throws Exception {
-
         Action copyAction = new CopyAction(new PathCopier(source, target));
         Task taskToDo = new Task(taskName, copyAction);
         taskManager.addTask(taskToDo);

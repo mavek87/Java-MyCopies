@@ -1,8 +1,6 @@
 package com.matteoveroni.control.screens;
 
 import com.matteoveroni.model.Model;
-import com.matteoveroni.model.tasks.TaskManager;
-import com.matteoveroni.model.tasks.TaskManagerFactory;
 import com.matteoveroni.view.resources.ScreenResources;
 import java.io.File;
 import java.net.URL;
@@ -22,7 +20,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Matteo Veroni
  */
-public class CopyScreenController implements Initializable, ScreenController, ControllableScreen {
+public class CopyScreenController implements ScreenController, ControllableScreen {
     
     @FXML
     private ResourceBundle resources;
@@ -55,11 +53,6 @@ public class CopyScreenController implements Initializable, ScreenController, Co
     };
 
     private RadioButtonStates isRadioButtonFileOrDirectory = RadioButtonStates.file;
-    
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    }
 
     @Override
     public void setScreensController(ScreensController screensController) {
@@ -154,5 +147,16 @@ public class CopyScreenController implements Initializable, ScreenController, Co
     @FXML
     void backToMainScreen(ActionEvent event) {
         myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
+    }
+    
+    @FXML
+    void initialize() {
+        assert backToMainScreenButton != null : "fx:id=\"backToMainScreenButton\" was not injected: check your FXML file 'CopyScreen.fxml'.";
+        assert consolleTextArea != null : "fx:id=\"consolleTextArea\" was not injected: check your FXML file 'CopyScreen.fxml'.";
+        assert sourcePathTextField != null : "fx:id=\"sourcePathTextField\" was not injected: check your FXML file 'CopyScreen.fxml'.";
+        assert chooseSourcePathButton != null : "fx:id=\"chooseSourcePathButton\" was not injected: check your FXML file 'CopyScreen.fxml'.";
+        assert targetPathTextField != null : "fx:id=\"targetPathTextField\" was not injected: check your FXML file 'CopyScreen.fxml'.";
+        assert startCopyButton != null : "fx:id=\"startCopyButton\" was not injected: check your FXML file 'CopyScreen.fxml'.";
+        assert chooseTargetPathButton != null : "fx:id=\"chooseTargetPathButton\" was not injected: check your FXML file 'CopyScreen.fxml'.";
     }
 }
