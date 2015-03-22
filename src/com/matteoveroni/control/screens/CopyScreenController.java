@@ -1,13 +1,15 @@
 package com.matteoveroni.control.screens;
 
+import com.matteoveroni.control.ScreenControllable;
+import com.matteoveroni.control.ScreenSettable;
+import com.matteoveroni.control.ScreensController;
 import com.matteoveroni.model.Model;
-import com.matteoveroni.view.resources.ScreenResources;
+import com.matteoveroni.view.resources.screen.ScreenResources;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -20,8 +22,8 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Matteo Veroni
  */
-public class CopyScreenController implements ScreenController, ControllableScreen {
-    
+public class CopyScreenController implements ScreenSettable, ScreenControllable {
+
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -44,7 +46,7 @@ public class CopyScreenController implements ScreenController, ControllableScree
     private Model model;
     private Stage stage;
     private ScreensController myController;
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(CopyScreenController.class);
 
     private enum RadioButtonStates {
@@ -143,12 +145,12 @@ public class CopyScreenController implements ScreenController, ControllableScree
             LOG.error(ex.getMessage());
         }
     }
-    
+
     @FXML
     void backToMainScreen(ActionEvent event) {
         myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
     }
-    
+
     @FXML
     void initialize() {
         assert backToMainScreenButton != null : "fx:id=\"backToMainScreenButton\" was not injected: check your FXML file 'CopyScreen.fxml'.";

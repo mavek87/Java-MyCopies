@@ -1,4 +1,4 @@
-package com.matteoveroni.control.screens;
+package com.matteoveroni.control;
 
 import com.matteoveroni.model.Model;
 import javafx.stage.Stage;
@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 /**
  * @author Matteo Veroni
  */
-public interface ScreenController {
+public interface ScreenSettable {
 
     public void setModel(Model model);
 

@@ -1,7 +1,7 @@
 package com.matteoveroni;
 
-import com.matteoveroni.control.screens.ControllersBuilder;
-import com.matteoveroni.control.screens.ScreensController;
+import com.matteoveroni.control.ControllersBuilder;
+import com.matteoveroni.control.ScreensController;
 import com.matteoveroni.model.Model;
 import com.matteoveroni.model.ModelFactory;
 import javafx.application.Application;

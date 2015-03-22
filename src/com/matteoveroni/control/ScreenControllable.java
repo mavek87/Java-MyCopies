@@ -1,9 +1,9 @@
-package com.matteoveroni.control.screens;
+package com.matteoveroni.control;
 
 /**
  * @author Matteo Veroni
  */
-public interface ControllableScreen {
+public interface ScreenControllable {
 
     public void setScreensController(ScreensController screensController);
 }

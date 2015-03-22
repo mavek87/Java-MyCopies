@@ -1,7 +1,10 @@
 package com.matteoveroni.control.screens;
 
+import com.matteoveroni.control.ScreenControllable;
+import com.matteoveroni.control.ScreenSettable;
+import com.matteoveroni.control.ScreensController;
 import com.matteoveroni.model.Model;
-import com.matteoveroni.view.resources.ScreenResources;
+import com.matteoveroni.view.resources.screen.ScreenResources;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,7 +20,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Matteo Veroni
  */
-public class MainScreenController implements ControllableScreen, ScreenController  {
+public class MainScreenController implements ScreenControllable, ScreenSettable  {
         
     @FXML
     private ResourceBundle resources;

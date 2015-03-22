@@ -1,7 +1,7 @@
-package com.matteoveroni.control.screens;
+package com.matteoveroni.control;
 
 import com.matteoveroni.model.Model;
-import com.matteoveroni.view.resources.ScreenResources;
+import com.matteoveroni.view.resources.screen.ScreenResources;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +23,8 @@ public class ControllersBuilder {
         }
 
         mainController.loadScreen(ScreenResources.COPY_SCREEN.screenName(), ScreenResources.COPY_SCREEN.screenResource());
+        
+        mainController.loadScreen(ScreenResources.TEST_SCREEN.screenName(), ScreenResources.TEST_SCREEN.screenResource());
         
         mainController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
         

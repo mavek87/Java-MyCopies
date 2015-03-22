@@ -1,4 +1,4 @@
-package com.matteoveroni.control.screens;
+package com.matteoveroni.control;
 
 /**
  * @author Matteo Veroni

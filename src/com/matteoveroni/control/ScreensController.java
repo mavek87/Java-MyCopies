@@ -1,4 +1,4 @@
-package com.matteoveroni.control.screens;
+package com.matteoveroni.control;
 
 import com.matteoveroni.FXMLMainLoader;
 import com.matteoveroni.model.Model;
@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Matteo Veroni
  */
-public class ScreensController extends StackPane implements ScreenController {
+public class ScreensController extends StackPane implements ScreenSettable {
 
     private final Map<String, Node> screens = new HashMap<>();
     private Model model;
@@ -44,7 +44,7 @@ public class ScreensController extends StackPane implements ScreenController {
         this.stage = stage;
     }
 
-    public void addScreen(String name, Node rootNodeOfTheScreensSceneGraph) {
+    private void addScreen(String name, Node rootNodeOfTheScreensSceneGraph) {
         screens.put(name, rootNodeOfTheScreensSceneGraph);
     }
 
@@ -55,10 +55,10 @@ public class ScreensController extends StackPane implements ScreenController {
             
             Parent screenLoaded = (Parent) myLoader.load();
             
-            ControllableScreen controllableScreenController = ((ControllableScreen) myLoader.getController());
+            ScreenControllable controllableScreenController = ((ScreenControllable) myLoader.getController());
             controllableScreenController.setScreensController(this);
 
-            ScreenController screenController = ((ScreenController) myLoader.getController());
+            ScreenSettable screenController = ((ScreenSettable) myLoader.getController());
             screenController.setModel(model);
             screenController.setStage(stage);
 
