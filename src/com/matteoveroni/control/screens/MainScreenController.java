@@ -20,18 +20,20 @@ import org.slf4j.LoggerFactory;
  */
 public class MainScreenController implements ScreenControllable, ScreenSettable  {
         
+    private Model model;
+    private Stage stage;
+    private ScreensController myController;
+    
     @FXML
     private ResourceBundle resources;
     @FXML
     private URL location;
     @FXML
-    private Button goToCopyScreenButton;
+    private Button NewTaskButton;
     @FXML
-    private TableView<?> ScheduledTasksTable;
-    
-    private Model model;
-    private Stage stage;
-    private ScreensController myController;
+    private Button CopyAFileButton;
+    @FXML
+    private TableView<?> ScheduledTasksTable;    
 
     private static final Logger LOG = LoggerFactory.getLogger(MainScreenController.class);
 
@@ -56,9 +58,8 @@ public class MainScreenController implements ScreenControllable, ScreenSettable 
     }	
     
     @FXML
-    void initialize() {
-        assert goToCopyScreenButton != null : "fx:id=\"goToCopyScreenButton\" was not injected: check your FXML file 'MainScreen.fxml'.";
-        assert ScheduledTasksTable != null : "fx:id=\"ScheduledTasksTable\" was not injected: check your FXML file 'MainScreen.fxml'.";
+    void goToTaskScreen(ActionEvent event) {
+         myController.setScreen(ScreenResources.TASK_SCREEN.screenName());
     }
-
+    
 }

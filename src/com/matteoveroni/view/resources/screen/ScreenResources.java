@@ -7,7 +7,7 @@ public enum ScreenResources {
     
     MAIN_SCREEN ("Main Screen", "view/MainScreen.fxml"),
     COPY_SCREEN ("Copy Screen", "view/CopyScreen.fxml"),
-    TEST_SCREEN ("Test Screen", "view/TestScreen.fxml");
+    TASK_SCREEN ("Action Screen", "view/TaskScreen.fxml");
 
     private final String screenName;
     private final String screenResource;

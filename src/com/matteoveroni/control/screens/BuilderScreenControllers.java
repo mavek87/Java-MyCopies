@@ -26,7 +26,7 @@ public class BuilderScreenControllers {
 
         mainController.loadScreen(ScreenResources.COPY_SCREEN.screenName(), ScreenResources.COPY_SCREEN.screenResource());
         
-        mainController.loadScreen(ScreenResources.TEST_SCREEN.screenName(), ScreenResources.TEST_SCREEN.screenResource());
+        mainController.loadScreen(ScreenResources.TASK_SCREEN.screenName(), ScreenResources.TASK_SCREEN.screenResource());
         
         mainController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
         

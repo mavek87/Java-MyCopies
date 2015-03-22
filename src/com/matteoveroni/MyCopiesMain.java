@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 public class MyCopiesMain extends Application {
 
     private static final String APPLICATION_NAME = "MyCopies";
-    private static final String APPLICATION_VERSION = "0.0.7";
+    private static final String APPLICATION_VERSION = "0.0.8";
     
     private final Model model;
 
