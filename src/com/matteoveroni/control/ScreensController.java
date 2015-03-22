@@ -46,11 +46,11 @@ public class ScreensController extends StackPane implements ScreenSettable {
         this.stage = stage;
     }
 
-    private void addScreen(String name, Node rootNodeOfTheScreensSceneGraph) {
-        screens.put(name, rootNodeOfTheScreensSceneGraph);
+    public void addScreen(String screenName, Node rootNodeOfTheScreensSceneGraph) {
+        screens.put(screenName, rootNodeOfTheScreensSceneGraph);
     }
 
-    public boolean loadScreen(String name, String resource) {
+    public boolean loadScreen(String screenName, String resource) {
 
         try {
             FXMLLoader myLoader = FXMLMainLoader.getInstance().loadResource(resource);
@@ -64,9 +64,9 @@ public class ScreensController extends StackPane implements ScreenSettable {
             screenController.setModel(model);
             screenController.setStage(stage);
 
-            addScreen(name, screenLoaded);
+            addScreen(screenName, screenLoaded);
             
-            LOG.info("Screen \'" + name + "\' loaded succesfully!");
+            LOG.info("Screen \'" + screenName + "\' loaded succesfully!");
             return true;
 
         } catch (Exception e) {
@@ -76,10 +76,10 @@ public class ScreensController extends StackPane implements ScreenSettable {
         }
     }
 
-    public boolean setScreen(final String name) {
+    public boolean setScreen(final String screenName) {
 
         //If screen loaded
-        if (screens.get(name) != null) { 
+        if (screens.get(screenName) != null) { 
             final DoubleProperty opacity = opacityProperty();
 
             //Is there more than one screen
@@ -95,7 +95,7 @@ public class ScreensController extends StackPane implements ScreenSettable {
                                 //Remove displayed screen
                                 getChildren().remove(0);
                                 //Add new screen
-                                getChildren().add(0, screens.get(name));
+                                getChildren().add(0, screens.get(screenName));
                                 Timeline fadeIn = new Timeline(
                                     new KeyFrame(Duration.ZERO,
                                         new KeyValue(opacity, 0.0)),
@@ -109,7 +109,7 @@ public class ScreensController extends StackPane implements ScreenSettable {
             } else {
                 //No one else been displayed, then just show
                 setOpacity(0.0);
-                getChildren().add(screens.get(name));
+                getChildren().add(screens.get(screenName));
                 Timeline fadeIn = new Timeline(
                     new KeyFrame(Duration.ZERO,
                         new KeyValue(opacity, 0.0)),
@@ -118,21 +118,21 @@ public class ScreensController extends StackPane implements ScreenSettable {
                 fadeIn.play();
             }
             
-            LOG.info("Screen \'" + name + "\' succesfully setted!");
+            LOG.info("Screen \'" + screenName + "\' succesfully setted!");
             return true;
         } else {
-            LOG.warn("Screen \'" + name + "\' hasn\'t been loaded!");
+            LOG.warn("Screen \'" + screenName + "\' hasn\'t been loaded!");
             return false;
         }
     }
 
-    public Node getScreen(String name) {
-        return screens.get(name);
+    public Node getScreen(String screenName) {
+        return screens.get(screenName);
     }
 
-    public boolean unloadScreen(String name) {
-        if (screens.remove(name) == null) {
-            LOG.warn("Screen \'" + name + "\' didn\'t exists!");
+    public boolean unloadScreen(String screenName) {
+        if (screens.remove(screenName) == null) {
+            LOG.warn("Screen \'" + screenName + "\' didn\'t exists!");
             return false;
         } else {
             return true;
