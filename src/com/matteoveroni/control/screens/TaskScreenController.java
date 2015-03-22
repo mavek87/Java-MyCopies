@@ -73,12 +73,28 @@ public class TaskScreenController implements ScreenSettable, ScreenControllable,
     @FXML
     void okGoToSpecificTaskScreen(ActionEvent event) {
         myController.setScreen(ScreenResources.MAIN_SCREEN.screenName());
+        taskSelected = TypeOfTaskComboBox.valueProperty().get();
+        switch(taskSelected){
+            case singlecopy:
+                myController.setScreen(ScreenResources.COPY_SCREEN.name());
+                break;
+            case scheduledcopy:
+                /*Dialogs.showInformationDialog(stage, "I have a great message for you!", 
+    "Information Dialog", "title");*/
+                myController.setScreen(ScreenResources.MAIN_SCREEN.name());
+                break;
+            case alarm:
+                myController.setScreen(ScreenResources.MAIN_SCREEN.name());
+                break;
+            default:
+                LOG.warn("You have to select a type of Task");
+                break;
+        }
     }
     
     @FXML
     void selectedNewTypeOfTask(ActionEvent event){
         taskSelected = TypeOfTaskComboBox.valueProperty().get();
-        
         switch(taskSelected){
             case singlecopy:
                 LOG.info("Selected \'" + taskSelected + "\' task");
