@@ -1,6 +1,8 @@
 package com.matteoveroni.control;
 
 import com.matteoveroni.FXMLMainLoader;
+import com.matteoveroni.control.screens.ScreenControllable;
+import com.matteoveroni.control.screens.ScreenSettable;
 import com.matteoveroni.model.Model;
 import java.util.HashMap;
 import java.util.Map;

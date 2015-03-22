@@ -1,7 +1,5 @@
 package com.matteoveroni.control.screens;
 
-import com.matteoveroni.control.ScreenControllable;
-import com.matteoveroni.control.ScreenSettable;
 import com.matteoveroni.control.ScreensController;
 import com.matteoveroni.model.Model;
 import javafx.stage.Stage;

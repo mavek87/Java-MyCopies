@@ -1,5 +1,7 @@
-package com.matteoveroni.control;
+package com.matteoveroni.control.screens;
 
+import com.matteoveroni.control.ScreensController;
+import com.matteoveroni.control.ScreensControllerFactory;
 import com.matteoveroni.model.Model;
 import com.matteoveroni.view.resources.screen.ScreenResources;
 import javafx.stage.Stage;
@@ -7,11 +9,11 @@ import javafx.stage.Stage;
 /**
  * @author Matteo Veroni
  */
-public class ControllersBuilder {
+public class BuilderScreenControllers {
     
     private final ScreensController mainController = ScreensControllerFactory.getInstance();
     
-    public ControllersBuilder(Stage stage, Model model){
+    public BuilderScreenControllers(Stage stage, Model model){
         mainController.setModel(model);
         mainController.setStage(stage);
     }

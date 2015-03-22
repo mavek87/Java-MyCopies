@@ -1,6 +1,6 @@
 package com.matteoveroni;
 
-import com.matteoveroni.control.ControllersBuilder;
+import com.matteoveroni.control.screens.BuilderScreenControllers;
 import com.matteoveroni.control.ScreensController;
 import com.matteoveroni.model.Model;
 import com.matteoveroni.model.ModelFactory;
@@ -32,7 +32,7 @@ public class MyCopiesMain extends Application {
 
         stage.setTitle(APPLICATION_NAME + " v. " + APPLICATION_VERSION);
         
-        ControllersBuilder controllersBuilder = new ControllersBuilder(stage, model);
+        BuilderScreenControllers controllersBuilder = new BuilderScreenControllers(stage, model);
         ScreensController mainController = controllersBuilder.build();
        
         Scene primaryScene = new Scene(mainController);
