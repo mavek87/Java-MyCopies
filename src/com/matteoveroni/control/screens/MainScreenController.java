@@ -2,13 +2,9 @@ package com.matteoveroni.control.screens;
 
 import com.matteoveroni.control.ScreensController;
 import com.matteoveroni.model.Model;
-import com.matteoveroni.model.actions.PrintMessageAction;
-import com.matteoveroni.model.tasks.Task;
 import com.matteoveroni.view.resources.screen.ScreenResources;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
